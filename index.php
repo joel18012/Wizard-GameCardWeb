@@ -7,65 +7,74 @@
         <script src="flickity.js"></script>
         <style>
             .Perfil {
-            width:80%;
-            height:80%;
-            padding-top:5%;
-            position:relative;
+                position: fixed; 
+                height:25%;
 
             border-radius: 34px 34px 34px 34px;
             -moz-border-radius: 34px 34px 34px 34px;
             -webkit-border-radius: 34px 34px 34px 34px;
-            border: 13px double #f7b900;
-            }                           
+            border: 8px double #f7b900;
+            }  
+            .Carta {
+            height:25%;
+            position: fixed;
+
+            border-radius: 34px 34px 34px 34px;
+            -moz-border-radius: 34px 34px 34px 34px;
+            -webkit-border-radius: 14px 14px 14px 14px;
+            border: 4px solid #f7b900;
+            }   
+            .Cuadro {
+            height:25%;
+            position: fixed;
+            margin-block: 1%;
+            }                          
         </style>
     </head>
     <body background="Imagenes/FondoAzul.jpg">
-        <div style="height: 70%;width: 100%;">
-            <table hidden id='Tablero' style="height: 100%;width: 100%;">
-                <tbody>
+            <table  id='Tablero' style="width: 100%;height:70%">
+                <tbody style="color: white">
                     <tr>
-                        <td><div id='perfil1' class="Perfil"></div></td>
-                        <td><div id='perfil2' class="Perfil"></div></td>
-                        <td><div id='perfil3' class="Perfil"></div></td>
-                        <td><div id='Trump' class="Perfil"></div></td>
-                        <td><div id='perfil5' class="Perfil"></div></td>
-                        <td><div id='perfil6' class="Perfil"></div></td>
-                        <td><div id='perfil7' class="Perfil"></div></td>
+                        <td class="Cuadro"><img middle src='Imagenes/Perfil1.jpg' id='perfil1'>Godis</img></td>
+                        <td class="Cuadro"><img src='Imagenes/Perfil1.jpg' id='perfil2' >Alan</img></td>
+                        <td class="Cuadro"><img src='Imagenes/Perfil1.jpg' id='perfil3' >Alex</img></td>
+                        <td class="Cuadro"><img src='Imagenes/trump.jpg' id='Trump' >trump</img></td>
+                        <td class="Cuadro"><img src='Imagenes/Perfil1.jpg' id='perfil5' >Edson</img></td>
+                        <td class="Cuadro"><img src='Imagenes/Perfil1.jpg' id='perfil6' class="Perfil">Anivia</img></td>
+                        <td class="Cuadro"><img src='Imagenes/Perfil1.jpg' id='perfil7' class="Perfil">LongDick</img></td>
                         </tr>
                     <tr>
-                        <td><div id='perfil1' class="Perfil"></div></td>
-                        <td><div id='perfil2' class="Perfil"></div></td>
-                        <td><div id='perfil3' class="Perfil"></div></td>
-                        <td><div id='Trump' class="Perfil"></div></td>
-                        <td><div id='perfil5' class="Perfil"></div></td>
-                        <td><div id='perfil6' class="Perfil"></div></td>
-                        <td><div id='perfil7' class="Perfil"></div></td>
+                        <td><img src='Cards/ygo-cardback.png' class="Carta"></img></td>
+                        <td><img src='Cards/image1.png' class="Carta"></img></td>
+                        <td><img src='Cards/ygo-cardback.png' class="Carta"></img></td>
+                        <td><img src='Cards/ygo-cardback.png' class="Carta"></img></td>
+                        <td><img src='Cards/ygo-cardback.png' class="Carta"></img></td>
+                        <td><img src='Cards/ygo-cardback.png' class="Carta"></img></td>
+                        <td><img src='Cards/ygo-cardback.png' class="Carta"></img></td>
                     </tr>
                 </tbody>
             </table>
 
-            <div id='Cartas' class="carousel">
+            <div id='Cartas' hidden class="carousel" style="height: 50%;width: 100%;">
                 <?php
-                for ($i=1; $i < 53; $i++) { 
+                for ($i=1; $i < 61; $i++) { 
                     echo('<img class="carousel-cell" src="Cards/image'.$i.'.png" ></img>');
                 }
                 ?>
             </div>
-            <br>
-            <p class="logger">&nbsp;aaaaaaaaaaaaa</p>
-            <img src="Cards/image1.png"></img>
-        </div>
-        <div>
-        <table id='Tablero' style="height: 30%;width: 100%;">
+            <p hidden class="logger">&nbsp;1</p>
+            
+        <div >
+            <table id='Menu' style="height: 8%;width: 100%;">
                 <tbody>
                     <tr>
-                        <td><button onclick="cambio()" class="Perfil" style="width:15%">X</button></div></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><img onclick="cambio()" src='Cards/ygo-cardback.png' style="width: 8%;bottom: 0px;position: absolute;"></img></div></td>
+                        <td ></td>
+                        <td ></td>
+                        <td ><img style="width: 8%;bottom: 0px;position: absolute;" id="logger2" src="Cards/image1.png" ></img></td>
+                        <td ></td>
+                        <td ></td>
+                        <td ></td>
                     </tr>
                 </tbody>
             </table>
@@ -78,8 +87,9 @@
         {
             if (document.getElementById('Tablero').hidden == true)
             {
-                document.getElementById('Tablero').hidden = false;
                 document.getElementById('Cartas').hidden = true;
+                document.getElementById('Tablero').hidden = false;
+                
             }
             else
             {
