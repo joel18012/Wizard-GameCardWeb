@@ -8,8 +8,8 @@ body { font-family: sans-serif; }
 }
 
 .carousel-cell {
-  width: 28%;
-  height: 200px;
+  width: 14%;
+  height: 100%;
   margin-right: 10px;
   background: #8C8;
   border-radius: 5px;

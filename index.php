@@ -10,10 +10,6 @@
                 position: fixed; 
                 height:25%;
 
-            border-radius: 34px 34px 34px 34px;
-            -moz-border-radius: 34px 34px 34px 34px;
-            -webkit-border-radius: 34px 34px 34px 34px;
-            border: 8px double #f7b900;
             }  
             .Carta {
             height:25%;
@@ -28,7 +24,8 @@
             height:25%;
             position: fixed;
             margin-block: 1%;
-            }                          
+            }                  
+                    
         </style>
     </head>
     <body background="Imagenes/FondoAzul.jpg">
