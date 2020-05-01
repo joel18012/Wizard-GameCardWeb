@@ -14,67 +14,67 @@ html,body {
 }
 </style>
 <script type="text/javascript">
-var socket;
-
-function init() {
-	var getUrl = window.location;
-	var host = "ws://"+getUrl.host+":9000"; // SET THIS TO YOUR SERVER
-	try {
-		socket = new WebSocket(host);
-		log('Servidor - status '+socket.readyState);
-		socket.onopen    = function(msg) { 
-							   log("Bienvenido - status "+this.readyState); 
-						   };
-		socket.onmessage = function(msg) { 
-							   log("Recibiste: "+msg.data); 
-						   };
-		socket.onclose   = function(msg) { 
-							   log("Desconectado - status "+this.readyState); 
-						   };
+	var socket;
+	
+	function init() {
+		var getUrl = window.location;
+		var host = "ws://"+getUrl.host+":9000"; // SET THIS TO YOUR SERVER
+		try {
+			socket = new WebSocket(host);
+			log('Servidor - status '+socket.readyState);
+			socket.onopen    = function(msg) { 
+								   log("Bienvenido - status "+this.readyState); 
+							   };
+			socket.onmessage = function(msg) { 
+								   log("Recibiste: "+msg.data); 
+							   };
+			socket.onclose   = function(msg) { 
+								   log("Desconectado - status "+this.readyState); 
+							   };
+		}
+		catch(ex){ 
+			log(ex); 
+		}
+		$("msg").focus();
 	}
-	catch(ex){ 
-		log(ex); 
+	
+	
+	function send(){
+		var txt,msg;
+		txt = $("msg");
+		msg = txt.value;
+		if(!msg) { 
+			alert("El Mensaje No puede estar vacio"); 
+			return; 
+		}
+		txt.value="";
+		txt.focus();
+		try { 
+			socket.send(msg); 
+			log('Enviaste: '+msg); 
+		} catch(ex) { 
+			log(ex); 
+		}
 	}
-	$("msg").focus();
-}
-
-
-function send(){
-	var txt,msg;
-	txt = $("msg");
-	msg = txt.value;
-	if(!msg) { 
-		alert("El Mensaje No puede estar vacio"); 
-		return; 
+	
+	function quit(){
+		if (socket != null) {
+			log("Adios!");
+			socket.close();
+			socket=null;
+		}
 	}
-	txt.value="";
-	txt.focus();
-	try { 
-		socket.send(msg); 
-		log('Enviaste: '+msg); 
-	} catch(ex) { 
-		log(ex); 
+	
+	function reconnect() {
+		quit();
+		init();
 	}
-}
-
-function quit(){
-	if (socket != null) {
-		log("Adios!");
-		socket.close();
-		socket=null;
-	}
-}
-
-function reconnect() {
-	quit();
-	init();
-}
-
-// Utilities
-function $(id){ return document.getElementById(id); }
-function log(msg){ $("log").innerHTML+="<br>"+msg; }
-function onkey(event){ if(event.keyCode==13){ send(); } }
-</script>
+	
+	// Utilities
+	function $(id){ return document.getElementById(id); }
+	function log(msg){ $("log").innerHTML+="<br>"+msg; }
+	function onkey(event){ if(event.keyCode==13){ send(); } }
+	</script>
 
 </head>
 <body onload="init()">
